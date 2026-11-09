@@ -124,7 +124,7 @@ cd grafana/proyecto
 docker compose up --build -d
 ```
 
-> ⚠️ Si el puerto 80 del host está ocupado, cambiar en `docker-compose.yml` la línea `"80:80"` por `"90:80"` y acceder por `http://localhost:90`.
+>  Si el puerto 80 del host está ocupado, cambiar en `docker-compose.yml` la línea `"80:80"` por `"90:80"` y acceder por `http://localhost:90`.
 
 Esto descarga `mariadb` y `haproxy`, construye `proyecto-web1` y `proyecto-web2`, crea la red `proyecto_webnet` y levanta los 4 contenedores.
 
@@ -149,8 +149,8 @@ for i in $(seq 1 6); do curl -s http://localhost:80 | grep -o "SERVER_ADDR: [0-9
 Al ejecutar `curl` aparece:
 
 ```
-✅ Conexión exitosa a la base de datos
-❌ Error de conexión o consulta: SQLSTATE[42S02]: Base table or view not found: 1146
+ Conexión exitosa a la base de datos
+ Error de conexión o consulta: SQLSTATE[42S02]: Base table or view not found: 1146
 Table 'mi_base_de_datos.usuarios' doesn't exist
 ```
 
@@ -159,7 +159,7 @@ Esto es **esperado** y se debe a dos cosas identificadas al analizar los archivo
 1. En `docker-compose.yml` el volumen que monta `init-db.sql` en MariaDB está **comentado**, por lo que el script nunca se ejecuta.
 2. Aunque se ejecutara, `init-db.sql` crea la tabla `mensajes`, mientras que `index.php` consulta `usuarios`.
 
-La conexión a MariaDB **sí funciona** (el mensaje ✅ lo confirma); lo que falta es la tabla. Para completar la prueba end-to-end se puede crear manualmente (ver Paso 7, opcional).
+La conexión a MariaDB **sí funciona** (el mensaje lo confirma); lo que falta es la tabla. Para completar la prueba end-to-end se puede crear manualmente (ver Paso 7, opcional).
 
 ---
 
